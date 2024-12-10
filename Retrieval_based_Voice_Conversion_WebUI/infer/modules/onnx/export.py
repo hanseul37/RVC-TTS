@@ -1,7 +1,7 @@
 import torch
-import onnxsim
-import onnx
+
 from infer.lib.infer_pack.models_onnx import SynthesizerTrnMsNSFsidM
+
 
 def export_onnx(ModelPath, ExportedPath):
     cpt = torch.load(ModelPath, map_location="cpu")
@@ -18,7 +18,7 @@ def export_onnx(ModelPath, ExportedPath):
     device = "cpu"  # 导出时设备（不影响使用模型）
 
     net_g = SynthesizerTrnMsNSFsidM(
-        *cpt["config"], is_half=False, version=cpt.get("version", "v1")
+        *cpt["config"], is_half=False, encoder_dim=vec_channels
     )  # fp32导出（C++要支持fp16必须手动将内存重新排列所以暂时不用fp16）
     net_g.load_state_dict(cpt["weight"], strict=False)
     input_names = ["phone", "phone_lengths", "pitch", "pitchf", "ds", "rnd"]
@@ -45,10 +45,8 @@ def export_onnx(ModelPath, ExportedPath):
         },
         do_constant_folding=False,
         opset_version=18,
-        verbose=False,
+        verbose=True,
         input_names=input_names,
         output_names=output_names,
     )
-    model, _ = onnxsim.simplify(ExportedPath)
-    onnx.save(model, ExportedPath)
     return "Finished"

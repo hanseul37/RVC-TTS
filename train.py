@@ -6,7 +6,7 @@ import json
 import pathlib
 import subprocess
 from subprocess import Popen, PIPE, STDOUT
-from schemas.voice import Voice
+from schemas.model import Model
 
 def train_index(exp_dir1, version19):
     exp_dir = "Retrieval_based_Voice_Conversion_WebUI/logs/%s" % (exp_dir1)
@@ -220,10 +220,10 @@ def click_train(
     p.wait()
     return "훈련이 완료된 후 실험 폴더 아래에서 콘솔 훈련 로그 또는 train.log를 볼 수 있습니다."
 
-def train_model(voice: Voice):
-    model_name = voice.user_id
+def train_model(model: Model):
+    model_name = model.model_name
     exp_dir = model_name
-    dataset = f"dataset/{model_name}"
+    dataset = model.wav
     sample_rate = "48000"
     ksample_rate = "48k"
     if sample_rate == "40000":

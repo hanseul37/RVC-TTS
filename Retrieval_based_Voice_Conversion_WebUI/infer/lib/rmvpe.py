@@ -4,14 +4,14 @@ from typing import List, Optional, Tuple
 import numpy as np
 import torch
 
-from infer.lib import jit
+from Retrieval_based_Voice_Conversion_WebUI.infer.lib import jit
 
 try:
     # Fix "Torch not compiled with CUDA enabled"
     import intel_extension_for_pytorch as ipex  # pylint: disable=import-error, unused-import
 
     if torch.xpu.is_available():
-        from infer.modules.ipex import ipex_init
+        from Retrieval_based_Voice_Conversion_WebUI.infer.modules.ipex import ipex_init
 
         ipex_init()
 except Exception:  # pylint: disable=broad-exception-caught

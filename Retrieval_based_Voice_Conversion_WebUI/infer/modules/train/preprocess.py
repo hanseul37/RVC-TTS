@@ -20,6 +20,9 @@ import librosa
 import numpy as np
 from scipy.io import wavfile
 
+import sys
+sys.path.append('Retrieval_based_Voice_Conversion_WebUI')
+
 from infer.lib.audio import load_audio
 from infer.lib.slicer2 import Slicer
 
@@ -110,6 +113,7 @@ class PreProcess:
 
     def pipeline_mp_inp_dir(self, inp_root, n_p):
         try:
+            inp_root = "dataset"
             infos = [
                 ("%s/%s" % (inp_root, name), idx)
                 for idx, name in enumerate(sorted(list(os.listdir(inp_root))))
