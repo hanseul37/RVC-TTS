@@ -2,7 +2,7 @@ from schemas.model import Model
 from train import train_model
 
 model = Model(
-    model_name = 'test',
+    model_name = 'test1',
     wav = 'dataset/test.wav'
 )
 

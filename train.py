@@ -237,7 +237,7 @@ def train_model(model: Model):
 
     save_frequency = 50
     #epoch = 10
-    epoch = 1
+    epoch = 5
     batch_size = "7"
     #batch_size = "32"
     cache_gpu = True
