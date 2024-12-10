@@ -44,9 +44,13 @@ torchcrepe==0.0.20
 fastapi
 torchfcpe
 ffmpy==0.3.1
+--extra-index-url https://download.pytorch.org/whl/cu117
 python-dotenv>=1.0.0
 av
 boto3
 pydantic
 sqlalchemy
 pymysql
+psutil==5.9.5
+monotonic_align==1.0.0
+#torch==1.13.1+cu117
