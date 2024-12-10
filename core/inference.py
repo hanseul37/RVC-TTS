@@ -15,7 +15,7 @@ def inference_voice(
     rms_mix_rate = 0.2
     protect = 0.2
 
-    exec_arg = "python3.10 RVC_Studio/inference_cli.py " + '"' + model_path + '" "' + tts + '" ' + str(
+    exec_arg = "python3.10 inference_cli.py " + '"' + model_path + '" "' + tts + '" ' + str(
         f0_up_key) + ' "[\\"' + f0_method + '\\"]" ' + str(f0_autotune) + " " + merge_type + " " + str(
         index_rate) + " " + str(filter_radius) + " " + resample_sr + " " + str(rms_mix_rate) + " " + str(
         protect) + " " + "output/"
