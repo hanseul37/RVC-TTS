@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__
+/TEMP
+*.pyd
+*.pt
+*.pth
+*.exe
+*.bin
+*.bk
+*.gguf
+.venv
+*.env
+!/logs/mute
+.cache
+*.log
