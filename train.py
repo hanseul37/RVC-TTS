@@ -236,8 +236,10 @@ def train_model(model: Model):
     f0method = "rmvpe"
 
     save_frequency = 50
-    epoch = 10
+    #epoch = 10
+    epoch = 1
     batch_size = "7"
+    #batch_size = "32"
     cache_gpu = True
 
     os.makedirs("Retrieval_based_Voice_Conversion_WebUI/logs/%s" % (exp_dir), exist_ok=True)
