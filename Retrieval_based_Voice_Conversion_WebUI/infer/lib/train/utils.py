@@ -278,13 +278,8 @@ def load_wav_to_torch(full_path):
 
 
 def load_filepaths_and_text(filename, split="|"):
-    try:
-        with open(filename, encoding="utf-8") as f:
-            filepaths_and_text = [line.strip().split(split) for line in f]
-    except UnicodeDecodeError:
-        with open(filename) as f:
-            filepaths_and_text = [line.strip().split(split) for line in f]
-    
+    with open(filename, encoding="utf-8") as f:
+        filepaths_and_text = [line.strip().split(split) for line in f]
     return filepaths_and_text
 
 
@@ -366,9 +361,10 @@ def get_hparams(init=True):
 
     args = parser.parse_args()
     name = args.experiment_dir
-    experiment_dir = os.path.join("./logs", args.experiment_dir)
+    experiment_dir = os.path.join("Retrieval_based_Voice_Conversion_WebUI/logs", args.experiment_dir)
 
     config_save_path = os.path.join(experiment_dir, "config.json")
+
     with open(config_save_path, "r") as f:
         config = json.load(f)
 
@@ -399,6 +395,7 @@ def get_hparams_from_dir(model_dir):
 
     hparams = HParams(**config)
     hparams.model_dir = model_dir
+    
     return hparams
 
 
@@ -408,6 +405,7 @@ def get_hparams_from_file(config_path):
     config = json.loads(data)
 
     hparams = HParams(**config)
+
     return hparams
 
 

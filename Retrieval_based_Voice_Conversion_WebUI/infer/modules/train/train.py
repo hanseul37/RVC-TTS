@@ -4,8 +4,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-now_dir = os.getcwd()
-sys.path.append(os.path.join(now_dir))
+#now_dir = os.getcwd()
+#sys.path.append(os.path.join(now_dir))
+sys.path.append('Retrieval_based_Voice_Conversion_WebUI')
 
 import datetime
 

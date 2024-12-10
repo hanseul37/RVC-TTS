@@ -11,6 +11,9 @@ import logging
 import numpy as np
 import pyworld
 
+import sys
+sys.path.append('Retrieval_based_Voice_Conversion_WebUI')
+
 from infer.lib.audio import load_audio
 
 logging.getLogger("numba").setLevel(logging.WARNING)
