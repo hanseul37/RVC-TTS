@@ -252,9 +252,6 @@ class VC(FeatureExtractor):
         t2 = ttime()
         times[1] += t2 - t1
 
-        print('*******3')
-        print('*******3')
-
         # with tqdm(total=len(opt_ts), desc="Processing", unit="window") as pbar:
         for i, t in enumerate(opt_ts):
             t = t // self.window * self.window
@@ -268,18 +265,10 @@ class VC(FeatureExtractor):
                 # pbar.update(1)
                 # pbar.refresh()
 
-        print('*******3')
-        print('*******3')
-
         audio_slice = audio_pad[t:]
         pitch_slice = pitch[:, t // self.window:] if if_f0 and t is not None else pitch
         pitchf_slice = pitchf[:, t // self.window:] if if_f0 and t is not None else pitchf
 
-        print('*******4')
-        print('*******4')
-        print(self.vc(model, net_g, sid, audio_slice, pitch_slice, pitchf_slice, times, index, big_npy, index_rate, version, protect)[self.t_pad_tgt : -self.t_pad_tgt])
-        print('*******4')
-        print('*******4')
         audio_opt.append(self.vc(model, net_g, sid, audio_slice, pitch_slice, pitchf_slice, times, index, big_npy, index_rate, version, protect)[self.t_pad_tgt : -self.t_pad_tgt])
 
         audio_opt = np.concatenate(audio_opt)
