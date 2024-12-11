@@ -7,3 +7,16 @@ rmvpe.pt
 .DS_Store
 .idea
 dataset/
+tts/
+output/
+/TEMP
+*.pyd
+*.pt
+*.pth
+*.exe
+*.bin
+*.bk
+*.gguf
+!/logs/mute
+.cache
+*.log

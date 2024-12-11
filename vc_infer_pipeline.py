@@ -78,6 +78,7 @@ class VC(FeatureExtractor):
             "output_layer": 9 if version == "v1" else 12,
         }
         t0 = ttime()
+
         with torch.no_grad():
             logits = model.extract_features(**inputs)
             feats = model.final_proj(logits[0]) if version == "v1" else logits[0]
@@ -119,7 +120,8 @@ class VC(FeatureExtractor):
             if pitch != None and pitchf != None:
                 pitch = pitch[:, :p_len]
                 pitchf = pitchf[:, :p_len]
-
+        print('*******2')
+        print('*******2')
         if protect < 0.5 and pitch != None and pitchf != None:
             pitchff = pitchf.clone()
             pitchff[pitchf > 0] = 1
@@ -250,6 +252,9 @@ class VC(FeatureExtractor):
         t2 = ttime()
         times[1] += t2 - t1
 
+        print('*******3')
+        print('*******3')
+
         # with tqdm(total=len(opt_ts), desc="Processing", unit="window") as pbar:
         for i, t in enumerate(opt_ts):
             t = t // self.window * self.window
@@ -263,11 +268,20 @@ class VC(FeatureExtractor):
                 # pbar.update(1)
                 # pbar.refresh()
 
+        print('*******3')
+        print('*******3')
+
         audio_slice = audio_pad[t:]
         pitch_slice = pitch[:, t // self.window:] if if_f0 and t is not None else pitch
         pitchf_slice = pitchf[:, t // self.window:] if if_f0 and t is not None else pitchf
+
+        print('*******4')
+        print('*******4')
+        print(self.vc(model, net_g, sid, audio_slice, pitch_slice, pitchf_slice, times, index, big_npy, index_rate, version, protect)[self.t_pad_tgt : -self.t_pad_tgt])
+        print('*******4')
+        print('*******4')
         audio_opt.append(self.vc(model, net_g, sid, audio_slice, pitch_slice, pitchf_slice, times, index, big_npy, index_rate, version, protect)[self.t_pad_tgt : -self.t_pad_tgt])
-        
+
         audio_opt = np.concatenate(audio_opt)
         if rms_mix_rate != 1:
             audio_opt = change_rms(audio, 16000, audio_opt, tgt_sr, rms_mix_rate)
