@@ -7,6 +7,7 @@ import pathlib
 import subprocess
 from subprocess import Popen, PIPE, STDOUT
 from schemas.model import Model
+from core.moving import moving_directory
 
 def train_index(exp_dir1, version19):
     exp_dir = "Retrieval_based_Voice_Conversion_WebUI/logs/%s" % (exp_dir1)
@@ -236,10 +237,8 @@ def train_model(model: Model):
     f0method = "rmvpe"
 
     save_frequency = 50
-    #epoch = 10
-    epoch = 5
-    batch_size = "7"
-    #batch_size = "32"
+    epoch = model.epoch
+    batch_size = str(model.batch_size)
     cache_gpu = True
 
     os.makedirs("Retrieval_based_Voice_Conversion_WebUI/logs/%s" % (exp_dir), exist_ok=True)
@@ -300,5 +299,7 @@ def train_model(model: Model):
 
     model_path = f'Retrieval_based_Voice_Conversion_WebUI/assets/weights/{model_name}.pth'
     index_path = f'Retrieval_based_Voice_Conversion_WebUI/logs/{exp_dir}'
+
+    model_path, index_path = moving_directory(model_path, index_path)
 
     return model_path, index_path
