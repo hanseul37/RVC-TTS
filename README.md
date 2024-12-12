@@ -105,13 +105,20 @@ inference_voice(voice)
 ```
 **Train, Inference 전체 예시는 `main.py`에서 확인할 수 있습니다.**
 
+## Demo
+아래 링크는 침착맨 유튜브의 5분 음성으로 epoch=5, batch_size=7로 학습한 RVC 모델로 뉴스 TTS 음성을 변환한 예시입니다.
+[RVC-TTS 데모 영상](https://drive.google.com/file/d/1dQxbXpND-s_njj7MYu2MXGbjd_V8UCNY/view?usp=drive_link)
+
+다음 링크에서는 위 영상에서 변환한 음성을 확인할 수 있습니다.
+[RVC-TTS 예시 음성](https://drive.google.com/file/d/1iaNIcvUgJVfFyw8lnowztDxobZgJaUDR/view?usp=sharing)
+
 ## Future Work
 현재 `Amazon Polly` 서비스를 이용하여 RVC 모델의 학습부터 추론까지 이어지는 파이프라인 구현을 완료하였습니다.
 이 경우, Polly의 한국어 음성은 '서연'만 사용가능하여 남성 음성 변환 시, 정확도가 떨어지는 문제가 발생할 가능성이 있습니다.
 다른 TTS 서비스와 연계하여 정확도 높은 음성을 학습, 추론하는 과정을 계획중입니다.
 
 ## Reference Project
-RVC-Project/Retrieval-based-Voice-Conversion-WebUI
-SayanoAI/RVC-Studio
-mamang74/RVC_Inference_noGUI
+- RVC-Project/Retrieval-based-Voice-Conversion-WebUI
+- SayanoAI/RVC-Studio
+- mamang74/RVC_Inference_noGUI
 
